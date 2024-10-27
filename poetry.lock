@@ -66,7 +66,48 @@ files = [
     {file = "pygame-2.6.0.tar.gz", hash = "sha256:722d33ae676aa8533c1f955eded966411298831346b8d51a77dad22e46ba3e35"},
 ]
 
+[[package]]
+name = "pygame-menu"
+version = "4.4.4"
+description = "A menu for pygame. Simple, and easy to use"
+optional = false
+python-versions = "<4,>=3.6"
+files = [
+    {file = "pygame-menu-4.4.4.tar.gz", hash = "sha256:7742235018cac0fcc0a7858bea59099791bb5978eb412104381636144269dd8a"},
+    {file = "pygame_menu-4.4.4-py3-none-any.whl", hash = "sha256:35b47e82406da383f3dd0c0028cb284874b7a349cb884d603a175b9470aa7e8e"},
+]
+
+[package.dependencies]
+pygame = ">=1.9.3"
+pyperclip = "*"
+typing-extensions = "*"
+
+[package.extras]
+docs = ["sphinx (<7)", "sphinx-autodoc-typehints (>=1.2.0)", "sphinx-rtd-theme"]
+test = ["nose2[coverage-plugin]", "pytest"]
+
+[[package]]
+name = "pyperclip"
+version = "1.9.0"
+description = "A cross-platform clipboard module for Python. (Only handles plain text for now.)"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyperclip-1.9.0.tar.gz", hash = "sha256:b7de0142ddc81bfc5c7507eea19da920b92252b548b96186caf94a5e2527d310"},
+]
+
+[[package]]
+name = "typing-extensions"
+version = "4.12.2"
+description = "Backported and Experimental Type Hints for Python 3.8+"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d"},
+    {file = "typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"},
+]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "568d27243ffd2cfc0d88b0269cdfc2d4c9ec14506da4044624c9cb5828bc1f6d"
+content-hash = "2e22e7f7874fbcc88715c863f414188139da257d35d8b3e05c60dadec30ead9f"
