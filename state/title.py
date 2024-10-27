@@ -2,14 +2,17 @@ from state.basic import GameState
 import pygame as pg
 
 
-class SplashScreen(GameState):
+class TitleScreen(GameState):
     def __init__(self):
-        super(SplashScreen, self).__init__()
-        self.persist["screen_color"] = "black"
+        super(TitleScreen, self).__init__()
+        self.persist["rounds"] = 0
         self.next_state = "GAMEPLAY"
         self._key_commands = self._init_key_commands()
         self._options = ["start", "options", "quit"]
         self._cursor_position = 0
+
+    def startup(self, persistent):
+        self.persist = persistent
 
     def get_event(self, event):
         if event.type == pg.QUIT:
@@ -40,6 +43,8 @@ class SplashScreen(GameState):
     def _press_enter(self):
         if self._cursor_position == 0:
             self.next_state = "GAMEPLAY"
+            self.persist["rounds"] = 0
+            self.persist["score"] = 0
             self.done = True
         elif self._cursor_position == 1:
             self.done = True
