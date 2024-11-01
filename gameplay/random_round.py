@@ -20,8 +20,8 @@ class RoundGenerator:
     def create_position(cls, existing_coords) -> tuple[int, int]:
         while True:
             flag = True
-            x_pos = randint(100, 620)
-            y_pos = randint(100, 1180)
+            x_pos = randint(100, 980)
+            y_pos = randint(100, 420)
             for coords in existing_coords:
                 if calc_dist((x_pos, y_pos), coords) < 100:
                     flag = False
@@ -41,7 +41,7 @@ class RoundGenerator:
         for i in range(overall_count):
             existing_coords.append(cls.create_position(existing_coords))
             figures.setdefault((figure_types[i], figure_colors[i]), []).append(
-                Graphic(figure_types[i], *existing_coords[-1], figure_colors[i])
+                Graphic(figure_types[i], *existing_coords[-1], figure_colors[i], choice([1.0, -1.0]), choice([1.0, -1.0]))
             )
 
         question_type, question_color = cls.create_question([Rectangle], chosen_colors)

@@ -12,14 +12,16 @@ class Answer(GameState):
         self.persist = persistent
         self.location = 0
         self.user_answer = ""
-        self.next_state = "GAMEPLAY" if self.persist["rounds"] < 5 else "TITLE"
+        self.next_state = "SCORE"
 
     def get_event(self, event):
         if event.type == pg.QUIT:
             self.quit = True
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_RETURN:
+                self.persist["is_correct"] = False
                 if self.user_answer == str(self.persist["answer"]):
+                    self.persist["is_correct"] = True
                     self.persist["score"] += 1
                 self.done = True
             if event.key == pg.K_LEFT:

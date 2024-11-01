@@ -84,9 +84,11 @@ class Graphic:
     x_velocity: float = 1.0
     y_velocity: float = 1.0
 
-    def __init__(self, figure_type, x_pos, y_pos, color):
+    def __init__(self, figure_type, x_pos, y_pos, color, x_velocity=1.0, y_velocity=1.0):
         self.figure = figure_type(x_pos, y_pos)
         self.color = color
+        self.x_velocity = x_velocity
+        self.y_velocity = y_velocity
 
     def move_ip(self):
         self.figure.move_ip(self.x_velocity, self.y_velocity)
