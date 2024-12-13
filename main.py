@@ -1,7 +1,12 @@
+import logging
 import sys
 import pygame as pg
 from engine import Game
-from state import gameplay, title, enter_answer, score
+from state import gameplay, title, enter_answer, score, difficulty
+
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 if __name__ == "__main__":
@@ -10,7 +15,8 @@ if __name__ == "__main__":
     states = {"TITLE": title.TitleScreen(),
               "GAMEPLAY": gameplay.Gameplay(),
               "ANSWER": enter_answer.Answer(),
-              "SCORE": score.ScoreScreen()}
+              "SCORE": score.ScoreScreen(),
+              "DIFFICULTY": difficulty.DifficultyChoice()}
     game = Game(screen, states, "TITLE")
     game.run()
     pg.quit()
