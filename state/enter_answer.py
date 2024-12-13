@@ -1,5 +1,9 @@
 from state.basic import GameState
 import pygame as pg
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class Answer(GameState):
@@ -21,8 +25,11 @@ class Answer(GameState):
             if event.key == pg.K_RETURN:
                 self.persist["is_correct"] = False
                 if self.user_answer == str(self.persist["answer"]):
+                    logger.info("Correct answer")
                     self.persist["is_correct"] = True
                     self.persist["score"] += 1
+                else:
+                    logger.info("Incorrect answer")
                 self.done = True
             if event.key == pg.K_LEFT:
                 self.location = (self.location - 1 + len(self.user_answer) + 1) % (len(self.user_answer) + 1)
@@ -37,6 +44,16 @@ class Answer(GameState):
 
     def draw(self, surface):
         surface.fill(pg.Color("black"))
-        self.draw_text(surface, f"How many {self.persist['q_color']} {self.persist['q_type'].to_str()} was there?", 40, self.screen_rect.width / 2, self.screen_rect.height / 3)
+        question = ["How many"]
+        for key in ["q_color", "q_type"]:
+            if self.persist[key]:
+                if key == "q_type":
+                    question.append(self.persist[key].to_str())
+                else:
+                    question.append(self.persist[key])
+        question.append("was there?")
+        self.draw_text(
+            surface, " ".join(question),40, self.screen_rect.width / 2, self.screen_rect.height / 3
+        )
         self.draw_text(surface, self.user_answer, 20, self.screen_rect.width / 2, self.screen_rect.h / 3 + 60)
 
